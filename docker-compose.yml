@@ -1,0 +1,20 @@
+services:
+  rtsp-simple-server-dummy:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      volumes:
+        - type: volume
+          source: images
+          target: /images
+          volume:
+            nocopy: true
+        - type: bind
+          source: ./rtsp-simple-server.yml
+          target: /rtsp-simple-server.yml
+        - type: bind
+          source: ./script.sh
+          target: /script.sh
+      restart: always
+volumes:
+  images:
